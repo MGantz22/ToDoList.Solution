@@ -29,7 +29,7 @@ namespace ToDoList.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Models.Item", b =>
@@ -48,28 +48,7 @@ namespace ToDoList.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("ToDoList.Models.ItemTag", b =>
-                {
-                    b.Property<int>("ItemTagId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemTagId");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("ItemTags");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Models.Tag", b =>
@@ -83,7 +62,7 @@ namespace ToDoList.Migrations
 
                     b.HasKey("TagId");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Models.Item", b =>
@@ -97,38 +76,9 @@ namespace ToDoList.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ToDoList.Models.ItemTag", b =>
-                {
-                    b.HasOne("ToDoList.Models.Item", "Item")
-                        .WithMany("JoinEntities")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ToDoList.Models.Tag", "Tag")
-                        .WithMany("JoinEntities")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Tag");
-                });
-
             modelBuilder.Entity("ToDoList.Models.Category", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("ToDoList.Models.Item", b =>
-                {
-                    b.Navigation("JoinEntities");
-                });
-
-            modelBuilder.Entity("ToDoList.Models.Tag", b =>
-                {
-                    b.Navigation("JoinEntities");
                 });
 #pragma warning restore 612, 618
         }
